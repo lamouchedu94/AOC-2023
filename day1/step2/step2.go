@@ -16,14 +16,27 @@ func main() {
 	var total int
 	m := make(map[string]string)
 	m["one"], m["two"], m["three"], m["four"], m["five"], m["six"], m["seven"], m["eight"], m["nine"] = "1", "2", "3", "4", "5", "6", "7", "8", "9"
+
 	for _, line := range tab {
 		var first, last string
-		for _, car := range line {
+		for i, car := range line {
 			if 48 <= int(car) && int(car) <= 57 {
 				if first == "" {
 					first = string(car)
 				} else {
 					last = string(car)
+				}
+			}
+			for key, val := range m {
+				// fmt.Println(line[i : i+len(key)])
+				if i+len(key) <= len(line) {
+					if key == line[i:i+len(key)] {
+						if first == "" {
+							first = string(val)
+						} else {
+							last = string(val)
+						}
+					}
 				}
 			}
 		}
