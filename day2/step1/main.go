@@ -8,10 +8,8 @@ import (
 )
 
 type result struct {
-	id    int
-	red   int
-	blue  int
-	green int
+	id       int
+	is_valid bool
 }
 
 func main() {
@@ -23,6 +21,7 @@ func main() {
 	all_party := []result{}
 	for _, line := range tab {
 		var party result
+		party.is_valid = true
 		new_line := strings.Split(line, ":")
 		fmt.Sscanf(new_line[0], "Game %d", &party.id)
 		data := strings.Split(new_line[1], ";")
@@ -34,20 +33,30 @@ func main() {
 				fmt.Sscanf(car, "%d %s", &number, &color)
 				switch color {
 				case "blue":
-					party.blue += number
+					if number > 14 {
+						party.is_valid = false
+					}
 				case "red":
-					party.red += number
+					if number > 12 {
+						party.is_valid = false
+					}
 				case "green":
-					party.green += number
+					if number > 13 {
+						party.is_valid = false
+					}
 				}
-
 			}
 		}
 		all_party = append(all_party, party)
 	}
+	var total int
 	for _, val := range all_party {
-		fmt.Printf("%+v\n", val)
+		if val.is_valid {
+			fmt.Printf("%+v\n", val)
+			total += val.id
+		}
 	}
+	fmt.Println(total)
 }
 
 func read(path string) ([]string, error) {
