@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"time"
 )
 
 func main() {
+	deb := time.Now()
 	data, err := read("../input")
 	if err != nil {
 		fmt.Println(err)
@@ -28,6 +30,9 @@ func main() {
 		res *= calc(time, distance)
 	}
 	fmt.Println(res)
+	fin := time.Now()
+	fmt.Println(fin.Sub(deb))
+
 }
 
 func calc(time int, distance int) int {
