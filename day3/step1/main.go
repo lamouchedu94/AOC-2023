@@ -38,40 +38,7 @@ func isNumber(val rune) bool {
 }
 
 func checkIsOk(data []string, x int, y int) {
-	var runeVal rune
-	_ = fmt.Sprintf(string(data[x+1][y+1]), "%+q", &runeVal)
-	//diag Haute Gauche
-	if data[x-1][y-1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Diag Haute Droite
-	if data[x-1][y+1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Diag Basse Droite
-	if data[x+1][y-1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Diag Basse Gauche
-	if data[x+1][y+1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Haut
-	if data[x-1][y] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Bas
-	if data[x+1][y] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Droite
-	if data[x][y+1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
-	//Gauche
-	if data[x][y-1] != '.' && !isNumber(runeVal) {
-		fmt.Println(string(data[x+1][y+1]))
-	}
+
 }
 
 func read(path string) ([]string, error) {
