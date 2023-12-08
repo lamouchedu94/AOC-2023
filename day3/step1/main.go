@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	data, err := read("input")
+	data, err := read("input.old")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -55,24 +55,17 @@ func main() {
 	fmt.Println(sum)
 }
 
-func inTab(tab []string, val string) bool {
-	in := false
-	for _, value := range tab {
-		if value == val {
-			return true
-		}
-	}
-	return in
-
-}
-
 func isNumber(val rune) bool {
 	return 48 <= val && val <= 57
 }
 
 func checkIsOk(data []string, start int, end int, y int) bool {
 	start = start - 1
-	end = end + 1
+	if end < start {
+		end = len(data[0]) - 1
+	} else {
+		end = end + 1
+	}
 
 	if start < 0 {
 		start += 1
@@ -91,9 +84,10 @@ func checkIsOk(data []string, start int, end int, y int) bool {
 	valid := false
 	for l := ligne; l <= lastLine; l++ {
 		for k := start; k < end; k++ {
+			//fmt.Println(string(data[l][k]))
 			if string(data[l][k]) != "." && !isNumber(rune(data[l][k])) {
 				//fmt.Println(string(data[l][k]))
-				valid = true
+				return true
 			}
 		}
 	}
