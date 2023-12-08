@@ -28,14 +28,11 @@ func main() {
 				grp = true
 			} else {
 				if res != "" {
-					//fmt.Println(res)
 					end = x
+					fmt.Println(res, checkIsOk(data, start, end, y))
 					//fmt.Println(start, end)
 					if checkIsOk(data, start, end, y) {
-						if !inTab(tabRes, res) {
-							tabRes = append(tabRes, res)
-
-						}
+						tabRes = append(tabRes, res)
 					}
 					start = 0
 					end = 0
@@ -46,9 +43,7 @@ func main() {
 		}
 		if grp {
 			if checkIsOk(data, start, end, y) {
-				if !inTab(tabRes, res) {
-					tabRes = append(tabRes, res)
-				}
+				tabRes = append(tabRes, res)
 			}
 		}
 	}
